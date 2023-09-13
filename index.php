@@ -19,11 +19,11 @@ try {
 
 require_once "./class/Livre.php";
 
-$livre = new Livre;
+$olivre = new Livre;
 echo " <br> <br>";
 
-var_dump($livre);
-$livres = $livre->getLivres();
+var_dump($olivre);
+$livres = $olivre->getLivres();
 echo " <br> <br>";
 
 print_r($livres);
@@ -31,3 +31,18 @@ echo " <br> <br>";
 
 var_dump($livres);
 var_dump($livres[0]);
+echo "<br> <br>";
+
+$livre = $olivre->getLivreById(3);
+var_dump($livre);
+
+$livre_to_insert = [
+    'titre' => "Titre de mon livre",
+    'auteur' => "Shaheel",
+    'annee' => 2023,
+    'edition' => "Gryffondor"
+];
+
+echo " <br> <br>";
+$livre_added = $olivre->ajouterLivre($livre_to_insert);
+var_dump($olivre->getLivres());
