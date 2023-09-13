@@ -1,34 +1,33 @@
 <?php
-require_once "./class/Person.php";
-require_once "./class/Student.php";
 
-$peter = new Person("Peter");
+$host = "localhost";
+$db = "31b";
+$user = "root";
+$password = "";
 
-// $peter->setName("Peter");
-echo $peter->getName();
+$dsn = "mysql:host=$host;dbname=$db;charset=UTF8";
 
-//ESSAYEZ D'ACCEDER A UNE PROPRIETE PRIVATE D'UNE CLASSE
-// echo $peter->address;
-// $peter->address = "mon address est";
+try {
+    $oPDO = new PDO($dsn, $user, $password);
 
-echo "<br>";
-$ines = new Student("Je suis Ines");
+    if ($oPDO) {
+        echo "Connected to the $db database successfully!";
+    }
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
 
-echo $ines->getName();
+require_once "./class/Livre.php";
 
-echo "<br>";
+$livre = new Livre;
+echo " <br> <br>";
 
-echo $ines->setStudentID(1);
-echo $ines->getStudentID();
+var_dump($livre);
+$livres = $livre->getLivres();
+echo " <br> <br>";
 
-echo "<br> <br>";
+print_r($livres);
+echo " <br> <br>";
 
-require_once "./class/Shape.php";
-
-$circle = new Circle(2);
-echo "Area Circle: " . $circle->calcArea();
-
-echo "<br>";
-
-$rectangle = new Rectangle(10, 15);
-echo "Area Rectangle: " . $rectangle->calcArea();
+var_dump($livres);
+var_dump($livres[0]);

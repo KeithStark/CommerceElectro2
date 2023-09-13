@@ -1,6 +1,6 @@
 <?php
 
-class Person
+abstract class Person
 {
     private $name;
     private $address;
@@ -27,4 +27,8 @@ class Person
     {
         $this->name = "";
     }
+
+//abstract method addCourse
+    abstract protected function addCourse($course);
+
 }

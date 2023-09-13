@@ -13,4 +13,10 @@ class Student extends Person
     {
         return $this->studentId;
     }
+
+    //method addCourse
+    public function addCourse($course)
+    {
+        echo "Course added: " . $course;
+    }
 }
