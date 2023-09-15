@@ -59,4 +59,40 @@ class Livre
         }
         return $oPDO->lastInsertId();
     }
+
+
+
+    //Method updateLivre
+    public function UpdateLivreById($id, $data)
+    {
+        global $oPDO;
+
+        $oPDOStmt = $oPDO->prepare('UPDATE livre SET titre=:titre, auteur=:auteur,annee=:annee WHERE id=:id ;');
+        $oPDOStmt->bindParam(':titre', $data['titre'], PDO::PARAM_STR);
+        $oPDOStmt->bindParam(':auteur', $data['auteur'], PDO::PARAM_STR);
+        $oPDOStmt->bindParam(':annee', $data['annee'], PDO::PARAM_INT);
+        $oPDOStmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $oPDOStmt->execute();
+
+        return $oPDOStmt;
+    }
+
+
+    //Method deleteLivre
+    public function deleteLivre($id)
+    {
+        global $oPDO;
+
+        $oPDOStmt = $oPDO->prepare("DELETE FROM livre WHERE id=:id");
+        $oPDOStmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $resultat = $oPDOStmt->execute();
+
+        if ($resultat) {
+            echo "Livre supprimé correctement <br><br>";
+        } else {
+            echo "une erreur est survenue";
+        }
+    }
 }
